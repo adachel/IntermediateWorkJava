@@ -1,5 +1,7 @@
 package ToyShop;
 
+import java.util.PriorityQueue;
+
 public class Toy {
     private int ID;
     private String name;
@@ -26,9 +28,10 @@ public class Toy {
         return chance;
     }
 
+
     @Override
     public String toString() {
-        return "Toy{" +
+        return "{" +
                 "ID=" + ID +
                 ", name='" + name + '\'' +
                 ", chance=" + chance +
