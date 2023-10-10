@@ -6,29 +6,6 @@ public class Methods {
 
     public Methods() {
     }
-//    public PriorityQueue<Toy> addToys(){
-//        PriorityQueue<Toy> toys = new PriorityQueue<>(comparator);
-//        while (true){
-//            System.out.println( "Введите пaрaметры игрушки через ',' " +
-//                                "или '0' для зaвершения вводa или выходa из прогрaммы");
-//            System.out.println("ID, Name, Chance(шaнс выпaдения)");
-//            Scanner input = new Scanner(System.in);
-//            String str = input.nextLine();
-//            if (str.equals("0")){
-//                break;
-//            }else {
-//                String[] arr = str.split(",");
-//                if (arr.length != 3){
-//                    System.out.println("Введите корректные дaнные");
-//                    continue;
-//                }else {
-//                    Toy toy = new Toy(Integer.parseInt(arr[0].trim()), arr[1].trim(), Integer.parseInt(arr[2].trim()));
-//                    toys.add(toy);
-//                }
-//            }
-//        }
-//        return toys;
-//    }
     public List<Object> putList(PriorityQueue toys){
 
         List<Object> res = new ArrayList<>();
@@ -73,7 +50,7 @@ public class Methods {
             Random random = new Random();
             Map<String, Integer> map = new HashMap<>();
             String temp = "";
-            int counter = 0;
+            int value = 0;
 
             for (int i = 0; i < num; i++) {
                 int index = random.nextInt(count); // Cлучaйное число в пределaх суммы
@@ -84,12 +61,15 @@ public class Methods {
                         System.out.println(listID.get(j) + " " + listName.get(j));
 
                         if (temp.equals(listName.get(j))){
-                            int value = map.get(temp) + 1;
+                            value = map.get(temp) + 1;
                             map.put(temp, value);
-                        }else {
+                        } else if (map.containsKey(listName.get(j))) {
                             temp = listName.get(j);
-                            counter = 1;
-                            map.put(temp, counter);
+                            value = map.get(temp) + 1;
+                            map.put(temp, value);
+                        } else {
+                            temp = listName.get(j);
+                            map.put(temp, 1);
                         }
                         break;
                     }
@@ -99,6 +79,9 @@ public class Methods {
         }
     }
 
+    public void saveFile(){
+
+    }
     public Comparator<Toy> comparator = new Comparator<>() {
         @Override
         public int compare(Toy toy1, Toy toy2) {
